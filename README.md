@@ -13,7 +13,6 @@ $ pipenv shell
 $ pipenv install
 ```
 
-```
 ## Runs
 
 Activate the virtual enviroment
