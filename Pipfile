@@ -8,6 +8,8 @@ selenium = "*"
 requests = "*"
 lxml = "*"
 webdriver-manager = "*"
+argparse = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
