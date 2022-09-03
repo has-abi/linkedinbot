@@ -1,1 +1,1 @@
-web: gunicorn linkedin-scrapper:./src/app
+web: gunicorn .:./src/app
