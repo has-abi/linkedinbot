@@ -1,6 +1,6 @@
 import os
 import time
-from typing import Any, Dict
+from typing import Dict
 from timeit import default_timer as timer
 
 from selenium import webdriver
@@ -43,7 +43,8 @@ def scrap_linkedin_profile(profile_username: str) -> Dict:
     start = timer()
     username = os.environ.get("LINKEDIN_USERNAME")
     pwd = os.environ.get("LINKEDIN_PWD")
-
+    print(username)
+    print(pwd)
     if username and pwd:
         options = webdriver.ChromeOptions()
         options.add_argument("--headless")
