@@ -2,6 +2,7 @@ from typing import Dict, List
 import time
 from bs4 import BeautifulSoup
 from selenium.webdriver.chromium.webdriver import ChromiumDriver
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 
 from ..utils.text_utils import clean_text
@@ -41,7 +42,7 @@ class Profile:
 
     def get_experiences(self) -> List[Dict]:
         self.driver.get(f"{self.profile_url}/details/experience/")
-        time.sleep(3)
+        time.sleep(5)
         source_page = BeautifulSoup(self.driver.page_source, "html.parser")
         main_experiences = source_page.find("main", class_="scaffold-layout__main")
         experiences_container = main_experiences.find("div", class_="pvs-list__container")
@@ -88,7 +89,7 @@ class Profile:
 
     def get_educations(self) -> List[Dict]:
         self.driver.get(f"{self.profile_url}/details/education/")
-        time.sleep(3)
+        time.sleep(5)
         source_page = BeautifulSoup(self.driver.page_source, "html.parser")
         main_educations = source_page.find("main", class_="scaffold-layout__main")
         educations_container = main_educations.find("div", class_="pvs-list__container")
@@ -132,7 +133,7 @@ class Profile:
     
     def get_certification(self) -> List[Dict]:
         self.driver.get(f"{self.profile_url}/details/certifications/")
-        time.sleep(3)
+        time.sleep(5)
         source_page = BeautifulSoup(self.driver.page_source, "html.parser")
         main_certification = source_page.find("main", class_="scaffold-layout__main")
         certification_container = main_certification.find("div", class_="pvs-list__container")
@@ -163,7 +164,7 @@ class Profile:
 
     def get_skills(self) -> List[str]:
         self.driver.get(f"{self.profile_url}/details/skills/")
-        time.sleep(3)
+        time.sleep(5)
         source_page = BeautifulSoup(self.driver.page_source, "html.parser")
         main_skills = source_page.find("main", class_="scaffold-layout__main")
         skills_container = main_skills.find("div", class_="pvs-list__container")
