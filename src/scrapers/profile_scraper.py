@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 from selenium.webdriver.chromium.webdriver import ChromiumDriver
 from selenium.webdriver.support.ui import WebDriverWait
 
-from utils.text_utils import clean_text
+from ..utils.text_utils import clean_text
 
 class Profile:
     def __init__(self, profile_url: str, driver: ChromiumDriver) -> None:

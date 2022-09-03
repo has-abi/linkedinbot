@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from services.scraper_service import scrap_linkedin_profile
+from ..services.scraper_service import scrap_linkedin_profile
 
 scraper_route = Blueprint('scraper_route', __name__, url_prefix="/api/scraper")
 

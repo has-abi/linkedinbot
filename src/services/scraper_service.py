@@ -1,5 +1,6 @@
 import os
 from typing import Any, Dict
+from timeit import default_timer as timer
 
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
@@ -8,7 +9,7 @@ from selenium.webdriver.common.by import By
 from http_constants.status import HttpStatus
 from flask import jsonify
 
-from scrapers.profile_scraper import Profile
+from ..scrapers.profile_scraper import Profile
 
 def login(driver: Any, username: str, pwd: str) -> None:
     """Login to a LinkedIn account
@@ -37,6 +38,7 @@ def login(driver: Any, username: str, pwd: str) -> None:
 
 def scrap_linkedin_profile(profile_username: str) -> Dict:
 
+    start = timer()
     username = os.environ.get("LINKEDIN_USERNAME")
     pwd = os.environ.get("LINKEDIN_PWD")
 
@@ -59,8 +61,10 @@ def scrap_linkedin_profile(profile_username: str) -> Dict:
         linkedin_profile["certificats"] = profile.get_certification()
         linkedin_profile["skills"] = profile.get_skills()
 
+        print(f'Response Time: {timer() - start}')
+
         return linkedin_profile, HttpStatus.OK
-        
+
     else:
         return jsonify({
             "error": "No credentials provided!"

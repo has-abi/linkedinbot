@@ -1,1 +1,1 @@
-web: gunicorn src.app:create_app
+web: gunicorn  wsgi:app --timeout 30

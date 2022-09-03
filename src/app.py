@@ -1,14 +1,14 @@
 import os
 import logging
-import config
+from .config import *
 
 from flask import Flask
 from dotenv import load_dotenv
 from flasgger import Swagger
 from flask_cors import CORS
 
-from docs.swagger import template,swagger_config
-from api.scraper_api import scraper_route
+from .docs.swagger import template,swagger_config
+from .api.scraper_api import scraper_route
 
 load_dotenv()
 
@@ -22,11 +22,11 @@ def create_app():
     app = Flask(__name__)
 
     if os.environ.get("FLASK_ENV")=="production":
-        app.config.from_object(config.ProductionConfig)
+        app.config.from_object(ProductionConfig)
     elif os.environ.get("FLASK_ENV")=="development":
-        app.config.from_object(config.DevelopmentConfig)
+        app.config.from_object(DevelopmentConfig)
     else:
-        app.config.from_object(config.TestingConfig)
+        app.config.from_object(TestingConfig)
 
     # CORS(app, resources=r'/api/*')
     
