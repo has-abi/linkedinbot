@@ -1,1 +1,1 @@
-web: gunicorn wsgi:app
+web: gunicorn linkedin-scrapper:./src/app
