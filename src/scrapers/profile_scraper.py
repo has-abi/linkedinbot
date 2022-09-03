@@ -38,6 +38,7 @@ class Profile:
             "about": about 
             }
 
+        print(profile)
         return profile
 
     def get_experiences(self) -> List[Dict]:
