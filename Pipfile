@@ -17,6 +17,7 @@ pylint = "*"
 flask-cors = "*"
 flasgger = "*"
 beautifulsoup4 = "*"
+gunicorn = "*"
 
 [dev-packages]
 
