@@ -12,6 +12,7 @@ from selenium.webdriver.chromium.webdriver import ChromiumDriver
 from http_constants.status import HttpStatus
 from flask import jsonify
 from linkedin_api import Linkedin
+from requests.cookies import cookiejar_from_dict
 
 from ..scrapers.profile_scraper import Profile
 
@@ -77,14 +78,18 @@ def scrap_p(profile_username):
     start = timer()
     username = os.environ.get("LINKEDIN_USERNAME")
     pwd = os.environ.get("LINKEDIN_PWD")
+    cookies = cookiejar_from_dict(
+    {
+        "liap": "true",
+        "li_at": os.environ["LINKEDIN_COOKIE_LI_AT"],
+        "JSESSIONID": os.environ["LINKEDIN_COOKIE_JSESSIONID"],
+    }
+)
     # Authenticate using any Linkedin account credentials
-    api = Linkedin(username, pwd)
+    api = Linkedin(username, pwd, cookies=cookies)
 
     # GET a profile
     profile = api.get_profile(profile_username)
     contact_info = api.get_profile_contact_info(profile_username)
-    print(contact_info)
     print(f'Response Time: {timer() - start}')
-    with open("profile.json", "w", encoding="utf-8") as f:
-        json.dump(profile, f)
     return profile
