@@ -36,6 +36,7 @@ def login(driver: ChromiumDriver, username: str, pwd: str) -> None:
 
     driver.find_element(By.XPATH, "//button[@data-litms-control-urn='login-submit']").click()
     while driver.title != "Feed | LinkedIn":
+        print(driver.title)
         time.sleep(1)
 
 def scrap_linkedin_profile(profile_username: str) -> Dict:
