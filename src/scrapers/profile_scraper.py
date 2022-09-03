@@ -17,7 +17,6 @@ class Profile:
     def get_personal_informations(self) -> Dict:
         time.sleep(1)
         source_page = BeautifulSoup(self.driver.page_source, "html.parser")
-        print(self.driver.page_source)
         full_name_elem = source_page.find("h1", class_="text-heading-xlarge")
         title_elem = source_page.find("div", class_="text-body-medium")
         # extra = source_page.find("div", class_="pv-text-details__left-panel")

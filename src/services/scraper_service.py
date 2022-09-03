@@ -7,12 +7,13 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chromium.webdriver import ChromiumDriver
 from http_constants.status import HttpStatus
 from flask import jsonify
 
 from ..scrapers.profile_scraper import Profile
 
-def login(driver: Any, username: str, pwd: str) -> None:
+def login(driver: ChromiumDriver, username: str, pwd: str) -> None:
     """Login to a LinkedIn account
 
     Args:
@@ -34,8 +35,8 @@ def login(driver: Any, username: str, pwd: str) -> None:
     pwd_elem.send_keys(pwd)
 
     driver.find_element(By.XPATH, "//button[@data-litms-control-urn='login-submit']").click()
-    time.sleep(2)
-
+    while driver.title != "Feed | LinkedIn":
+        time.sleep(1)
 
 def scrap_linkedin_profile(profile_username: str) -> Dict:
 
@@ -44,8 +45,6 @@ def scrap_linkedin_profile(profile_username: str) -> Dict:
     pwd = os.environ.get("LINKEDIN_PWD")
 
     if username and pwd:
-        print(username)
-        print(pwd)
         options = webdriver.ChromeOptions()
         options.add_argument("--headless")
 
