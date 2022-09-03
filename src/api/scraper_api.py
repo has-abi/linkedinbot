@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from ..services.scraper_service import scrap_linkedin_profile
+from ..services.scraper_service import scrap_linkedin_profile, scrap_p
 
 scraper_route = Blueprint('scraper_route', __name__, url_prefix="/api/scraper")
 
@@ -20,3 +20,8 @@ def ping():
 def scrap_profile():
     profile_username = request.form["username"]
     return  scrap_linkedin_profile(profile_username)
+
+@scraper_route.route("/get", methods=["POST"])
+def scrap():
+    profile_username = request.form["username"]
+    return  scrap_p(profile_username)

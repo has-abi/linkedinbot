@@ -1,3 +1,4 @@
+import json
 import os
 import time
 from typing import Dict
@@ -10,6 +11,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chromium.webdriver import ChromiumDriver
 from http_constants.status import HttpStatus
 from flask import jsonify
+from linkedin_api import Linkedin
 
 from ..scrapers.profile_scraper import Profile
 
@@ -69,3 +71,20 @@ def scrap_linkedin_profile(profile_username: str) -> Dict:
         return jsonify({
             "error": "No credentials provided!"
         })
+
+def scrap_p(profile_username):
+
+    start = timer()
+    username = os.environ.get("LINKEDIN_USERNAME")
+    pwd = os.environ.get("LINKEDIN_PWD")
+    # Authenticate using any Linkedin account credentials
+    api = Linkedin(username, pwd)
+
+    # GET a profile
+    profile = api.get_profile(profile_username)
+    contact_info = api.get_profile_contact_info(profile_username)
+    print(contact_info)
+    print(f'Response Time: {timer() - start}')
+    with open("profile.json", "w", encoding="utf-8") as f:
+        json.dump(profile, f)
+    return profile
