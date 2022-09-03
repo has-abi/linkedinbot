@@ -1,0 +1,204 @@
+Parse .pdf resume files with segmentation.
+---
+tags:
+  - Resume Parser
+consumes:
+  - multipart/form-data
+parameters:
+  - in: formData
+    name: resume
+    type: file
+    required: true
+    description: Upload .pdf.
+  - name: Authorization
+    in: header
+    description: The authorization token
+    required: true
+    type: string
+
+responses:
+  200:
+    description: When the resume is parsed successfully!
+    schema:
+      type: object
+      description: Parsed profile schema.
+      properties:
+        aboutMe:
+          type: string
+          description: Profile summary.
+        address:
+          type: string
+          description: Profile address.
+        address2:
+          type: string
+          description: Profile second address.
+        availability:
+          type: string
+          description: Profile availability.
+        birthDate:
+          type: string
+          description: Profile birth date.
+        citizenship:
+          type: string
+          description: Profile citizenship.
+        city:
+          type: string
+          description: Profile city of residence.
+        contract:
+          type: string
+          description: Profile contract.
+        country:
+          type: string
+          description: Profile country of residence.
+        educations:
+          type: array
+          description: Profile education details.
+          items:
+            type: object
+            properties:
+              city:
+                type: string
+                description: Education city.
+              endMonth:
+                type: string
+                description: Education end month.
+              endYear:
+                type: string
+                description: Education end year.
+              institute:
+                type: string
+                description: Education institute.
+              qualification:
+                type: string
+                description: Education obtained diploma/qualification.
+              startMonth:
+                type: string
+                description: Education start month.
+              startYear:
+                type: string
+                description: Education start year.
+        email:
+          type: string
+          description: Profile email.
+        experienceInMonth:
+          type: string
+          description: Profile Experiences in months.
+        experiences:
+          type: array
+          description: Profile education details.
+          items:
+            type: object
+            properties:
+              city:
+                type: string
+                description: Education city.
+              company:
+                type: string
+                description: Experience company.
+              description:
+                type: string
+                description: Experience description/detail.
+              endMonth:
+                type: string
+                description: Experience end month.
+              endYear:
+                type: string
+                description: Experience end year.
+              position:
+                type: string
+                description: Profile position during the experience.
+              startMonth:
+                type: string
+                description: Experience start month.
+              startYear:
+                type: string
+                description: Experience start year.
+        firstName:
+          type: string
+          description: Profile first name.
+        gender:
+          type: string
+          description: Profile gender.
+        lastName:
+          type: string
+          description: Profile last name.
+        levelOfStudies:
+          type: string
+          description: Profile level of studies.
+        mobility:
+          type: string
+          description: Profile mobility.
+        phoneNumber:
+          type: string
+          description: Profile phone number.
+        profile:
+          type: string
+          description: Profile title.
+        profileCertificates:
+          type: array
+          description: Profile obtained certificates.
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                description: Certificate title.
+        profileLanguages:
+          type: array
+          description: Profile spoken languages.
+          items:
+            type: object
+            properties:
+              languageLevel:
+                type: string
+                description: Language level.
+              name:
+                type: string
+                description: Language name.
+        profileSkills:
+          type: array
+          description: Profile soft and hard skills.
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                description: Skill name.
+              skillCategory:
+                type: object
+                properties:
+                  name:
+                    type: string
+                    description: Skill category.
+        projects:
+          type: array
+          description: Profile personal projects.
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                description: Project title.
+        salary:
+          type: string
+          description: Profile proposed salary.
+        socialMedia:
+          type: array
+          description: Profile social media accounts.
+          items:
+            type: object
+            properties:
+              label:
+                type: string
+                description: Social media account label.
+              link:
+                type: string
+                description: Social media account link.
+        tjm:
+          type: string
+          description: profile tjm.
+        workStatus:
+          type: string
+          description: profile work status.
+  500:
+    description: When there is a parsing problem! 

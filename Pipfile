@@ -10,6 +10,13 @@ lxml = "*"
 webdriver-manager = "*"
 argparse = "*"
 python-dotenv = "*"
+flask = "*"
+http-constants = "*"
+pep8 = "*"
+pylint = "*"
+flask-cors = "*"
+flasgger = "*"
+beautifulsoup4 = "*"
 
 [dev-packages]
 
