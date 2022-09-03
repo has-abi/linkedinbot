@@ -1,4 +1,5 @@
 import os
+import time
 from typing import Any, Dict
 from timeit import default_timer as timer
 
@@ -33,7 +34,7 @@ def login(driver: Any, username: str, pwd: str) -> None:
     pwd_elem.send_keys(pwd)
 
     driver.find_element(By.XPATH, "//button[@data-litms-control-urn='login-submit']").click()
-
+    time.sleep(2)
 
 
 def scrap_linkedin_profile(profile_username: str) -> Dict:
@@ -43,7 +44,8 @@ def scrap_linkedin_profile(profile_username: str) -> Dict:
     pwd = os.environ.get("LINKEDIN_PWD")
 
     if username and pwd:
-
+        print(username)
+        print(pwd)
         options = webdriver.ChromeOptions()
         options.add_argument("--headless")
 
