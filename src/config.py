@@ -12,7 +12,7 @@ class ProductionConfig(Config):
     """
 
 class DevelopmentConfig(Config):
-    """Developement Config class
+    """Development Config class
     Necessary configuration for development
     """
     DEBUG = True
