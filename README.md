@@ -15,11 +15,11 @@ $ pipenv install
 
 ## Runs
 
-Activate the virtual enviroment
+Activate the virtual environment
 
 ```bash
 $ pipenv shell
-$ python3 main.py
+$ python3 wsgi.py
 ```
 
  
